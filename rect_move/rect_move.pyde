@@ -1,4 +1,4 @@
-c = 1
+c, r = 1, 180
 x, y, d = 50, 40, 60
 
 def setup():
@@ -11,7 +11,7 @@ def setup():
     textAlign(CENTER, CENTER);
 
 def draw():    
-    global c, x, y, d # pra poder alterar a posição e diâmetro do círculo
+    global c, x, y, d, r # pra poder alterar a posição e diâmetro do círculo
     background(255) # fundo preto (e limpa o frame da animação)
     
     fill(255, 255, 255)
@@ -28,8 +28,10 @@ def draw():
         line(i,90,i,110)
         
     # draw square
-    rotate(radians(x))
-    rect(0, 0, d, d)
+    with pushMatrix():
+        translate(110,100)
+        rotate(radians(r))
+        rect(0, 0, d, d)
 
     # animate square
     x += 100
@@ -39,6 +41,9 @@ def draw():
     c += 1
     if c > 6:
         c = 1
+    r += 15
+    if r >= 271:
+        r = 180
     
     # noLoop()
     
